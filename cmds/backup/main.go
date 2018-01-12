@@ -69,7 +69,7 @@ func main() {
 		}
 		for _, p := range args[1:] {
 			path := &path{Path: p, Hash: "まだアーカイブされていません"}
-			if err != nil {
+			if err := col.InsertJSON(path); err != nil {
 				fatalErr = err
 				return
 			}
