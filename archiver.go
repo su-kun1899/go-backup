@@ -1,11 +1,11 @@
 package backup
 
 import (
+	"archive/zip"
 	"fmt"
 	"io"
-	"archive/zip"
-	"path/filepath"
 	"os"
+	"path/filepath"
 )
 
 type Archiver interface {

@@ -1,6 +1,11 @@
 package main
 
 import (
+	"fmt"
+	"time"
+	"syscall"
+	"os/signal"
+	"os"
 	"errors"
 	"encoding/json"
 	"github.com/su-kun1899/go-backup"
@@ -60,5 +65,21 @@ func main() {
 	if len(m.Paths) < 1 {
 		fatalErr = errors.New("パスがありません。backupツールを使って追加して下さい")
 		return
+	}
+
+	check(m, col)
+	signalChan := make(chan os.Signal, 1)
+	signal.Notify(signalChan, syscall.SIGINT, syscall.SIGTERM)
+	Loop:
+	for {
+		select {
+		case <-time.After(time.Duration(*interval) * time.Second):
+			check(m, col)
+		case <-signalChan:
+			// 終了
+			fmt.Println()
+			log.Printf("終了します...")
+			break Loop
+		}
 	}
 }

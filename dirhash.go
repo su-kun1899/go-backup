@@ -1,11 +1,11 @@
 package backup
 
 import (
+	"crypto/md5"
 	"fmt"
 	"io"
 	"os"
 	"path/filepath"
-	"crypto/md5"
 )
 
 func DirHash(path string) (string, error) {
