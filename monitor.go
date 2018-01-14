@@ -1,7 +1,6 @@
 package backup
 
 import (
-	"fmt"
 	"path/filepath"
 	"time"
 )
