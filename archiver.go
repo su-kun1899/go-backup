@@ -13,6 +13,9 @@ type Archiver interface {
 	Archive(src, dest string) error
 }
 
+// ZIP はファイルの圧縮とその解除にZIP形式を利用するArchiverです。
+var ZIP Archiver = (*zipper)(nil)
+
 type zipper struct{}
 
 func (z *zipper) Archive(src, dest string) error {

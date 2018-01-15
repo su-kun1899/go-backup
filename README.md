@@ -14,3 +14,6 @@
 
 すべてのパスの一覧表示:  
 `backup -db=/データベースへのパス list`
+
+定期的にバックアップ
+`backupd -db=./backupdata/ -archive=./archive -interval=5`
